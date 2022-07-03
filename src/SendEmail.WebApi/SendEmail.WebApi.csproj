@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>845e58c3-1cf3-4d1c-9bb5-5121f8d65ef2</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SendEmail.Domain\SendEmail.Domain.csproj" />
+    <ProjectReference Include="..\SendEmail.FluentEmailAdapter\SendEmail.FluentEmailAdapter.csproj" />
+  </ItemGroup>
+
+</Project>

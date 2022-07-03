@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32510.428
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendEmail.WebApi", "src\SendEmail.WebApi\SendEmail.WebApi.csproj", "{83D364B2-919C-4F5A-921F-5E83063FFDC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendEmail.FluentEmailAdapter", "src\SendEmail.FluentEmailAdapter\SendEmail.FluentEmailAdapter.csproj", "{FB1D991D-84C3-495F-80C4-9B718EC96934}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 Core", "0 Core", "{ACB8078F-3619-4555-993C-E78B3C14DE2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Infra", "1 Infra", "{22CE94D2-F793-4A20-8964-1408F34F1719}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 Presentation", "2 Presentation", "{3FC4686C-74B9-4161-AC0C-158D5858C25F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendEmail.Domain", "src\SendEmail.Domain\SendEmail.Domain.csproj", "{FC51BACF-632A-4348-85EF-3EB3BE75D0BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83D364B2-919C-4F5A-921F-5E83063FFDC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D364B2-919C-4F5A-921F-5E83063FFDC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D364B2-919C-4F5A-921F-5E83063FFDC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D364B2-919C-4F5A-921F-5E83063FFDC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB1D991D-84C3-495F-80C4-9B718EC96934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB1D991D-84C3-495F-80C4-9B718EC96934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB1D991D-84C3-495F-80C4-9B718EC96934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1D991D-84C3-495F-80C4-9B718EC96934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC51BACF-632A-4348-85EF-3EB3BE75D0BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC51BACF-632A-4348-85EF-3EB3BE75D0BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC51BACF-632A-4348-85EF-3EB3BE75D0BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC51BACF-632A-4348-85EF-3EB3BE75D0BE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{83D364B2-919C-4F5A-921F-5E83063FFDC0} = {3FC4686C-74B9-4161-AC0C-158D5858C25F}
+		{FB1D991D-84C3-495F-80C4-9B718EC96934} = {22CE94D2-F793-4A20-8964-1408F34F1719}
+		{FC51BACF-632A-4348-85EF-3EB3BE75D0BE} = {ACB8078F-3619-4555-993C-E78B3C14DE2D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C464F72-C11F-475D-B609-58EA2AF6C1D3}
+	EndGlobalSection
+EndGlobal

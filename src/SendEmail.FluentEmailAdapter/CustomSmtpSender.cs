@@ -1,0 +1,163 @@
+﻿using FluentEmail.Core;
+using FluentEmail.Core.Interfaces;
+using FluentEmail.Core.Models;
+using FluentEmail.Smtp;
+using System;
+using System.Linq;
+using System.Net.Mail;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace SendEmail.FluentEmailAdapter
+{
+    public class CustomSmtpSender : ISender
+    {
+        private readonly Func<SmtpClient> _clientFactory;
+        private readonly SmtpClient _smtpClient;
+
+        /// <summary>
+        /// Creates a sender using the default SMTP settings.
+        /// </summary>
+        public CustomSmtpSender() : this(() => new SmtpClient())
+        {
+        }
+
+        /// <summary>
+        /// Creates a sender that uses the factory to create and dispose an SmtpClient with each email sent.
+        /// </summary>
+        /// <param name="clientFactory"></param>
+        public CustomSmtpSender(Func<SmtpClient> clientFactory)
+        {
+            _clientFactory = clientFactory;
+        }
+
+        /// <summary>
+        /// Creates a sender that uses the given SmtpClient, but does not dispose it.
+        /// </summary>
+        /// <param name="smtpClient"></param>
+        public CustomSmtpSender(SmtpClient smtpClient)
+        {
+            _smtpClient = smtpClient;
+        }
+
+        public SendResponse Send(IFluentEmail email, CancellationToken? token = null)
+        {
+            // Uses task.run to negate Synchronisation Context
+            // see: https://stackoverflow.com/questions/28333396/smtpclient-sendmailasync-causes-deadlock-when-throwing-a-specific-exception/28445791#28445791
+            return Task.Run(() => SendAsync(email, token)).Result;
+        }
+
+        public async Task<SendResponse> SendAsync(IFluentEmail email, CancellationToken? token = null)
+        {
+            var response = new SendResponse();
+
+            var message = CreateMailMessage(email);
+
+            if (token?.IsCancellationRequested ?? false)
+            {
+                response.ErrorMessages.Add("Message was cancelled by cancellation token.");
+                return response;
+            }
+
+            if (_smtpClient == null)
+            {
+                using var client = _clientFactory();
+                await client.SendMailExAsync(message, token ?? default);
+            }
+            else
+            {
+                await _smtpClient.SendMailExAsync(message, token ?? default);
+            }
+
+            return response;
+        }
+
+        private MailMessage CreateMailMessage(IFluentEmail email)
+        {
+            var data = email.Data;
+            MailMessage message = null;
+
+            // Smtp seems to require the HTML version as the alternative.
+            if (!string.IsNullOrEmpty(data.PlaintextAlternativeBody))
+            {
+                message = new MailMessage
+                {
+                    Subject = data.Subject,
+                    Body = data.PlaintextAlternativeBody,
+                    IsBodyHtml = false,
+                    From = new MailAddress(data.FromAddress.EmailAddress, data.FromAddress.Name)
+                };
+
+                var mimeType = new System.Net.Mime.ContentType("text/html; charset=UTF-8");
+                AlternateView alternate = AlternateView.CreateAlternateViewFromString(data.Body, mimeType);
+                message.AlternateViews.Add(alternate);
+            }
+            else
+            {
+                message = new MailMessage
+                {
+                    Subject = data.Subject,
+                    Body = data.Body,
+                    IsBodyHtml = data.IsHtml,
+                    BodyEncoding = Encoding.UTF8,
+                    SubjectEncoding = Encoding.UTF8,
+                    From = new MailAddress(data.FromAddress.EmailAddress, data.FromAddress.Name)
+                };
+            }
+
+            foreach (var header in data.Headers)
+            {
+                message.Headers.Add(header.Key, header.Value);
+            }
+
+            data.ToAddresses.ForEach(x =>
+            {
+                message.To.Add(new MailAddress(x.EmailAddress, x.Name));
+            });
+
+            data.CcAddresses.ForEach(x =>
+            {
+                message.CC.Add(new MailAddress(x.EmailAddress, x.Name));
+            });
+
+            data.BccAddresses.ForEach(x =>
+            {
+                message.Bcc.Add(new MailAddress(x.EmailAddress, x.Name));
+            });
+
+            data.ReplyToAddresses.ForEach(x =>
+            {
+                message.ReplyToList.Add(new MailAddress(x.EmailAddress, x.Name));
+            });
+
+            switch (data.Priority)
+            {
+                case Priority.Low:
+                    message.Priority = MailPriority.Low;
+                    break;
+                case Priority.Normal:
+                    message.Priority = MailPriority.Normal;
+                    break;
+                case Priority.High:
+                    message.Priority = MailPriority.High;
+                    break;
+            }
+
+            data.Attachments.ForEach(x =>
+            {
+                System.Net.Mail.Attachment a = new System.Net.Mail.Attachment(x.Data, x.Filename, x.ContentType);
+
+                a.ContentId = x.ContentId;
+
+                //Attached file Inline, as parte of html body. In FluentEmail.Smtp not have this parte
+                //Check (https://github.com/lukencode/FluentEmail/blob/master/src/Senders/FluentEmail.Smtp/SmtpSender.cs)
+                a.ContentDisposition.Inline = x.IsInline;
+
+                message.Attachments.Add(a);
+            });
+
+            return message;
+        }
+    }
+}

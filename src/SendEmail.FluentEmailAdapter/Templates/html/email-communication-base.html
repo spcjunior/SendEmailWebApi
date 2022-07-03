@@ -1,0 +1,300 @@
+﻿<!DOCTYPE html>
+
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>notificação exame</title>
+  </head>
+  <body
+    style="
+      font-family: 'Nunito', sans-serif;
+      color: #656d75;
+      background-color: #f2f2f2;
+    "
+  >
+    <table class="table" style="border-spacing: 0; width: 100%">
+      <tr style="text-align: left; vertical-align: top">
+        <td class="row" style="text-align: left; vertical-align: top">
+          <div
+            class="container"
+            style="
+              background-color: #ffffff;
+              display: block;
+              margin: 0 auto;
+              max-width: 700px;
+              box-shadow: 0px 12px 12px rgba(50, 49, 114, 0.5);
+            "
+          >
+            <div class="mail-header" style="text-align: center">
+              <div
+                class="image"
+                style="background-color: #d31245; height: 122px"
+              >
+                <img
+                  alt="img_banner_company"
+                  src="cid:img_banner_company"
+                  title="Banner company"
+                />
+              </div>
+            </div>
+            <div class="mail-body" style="text-align: center">
+              <div class="customer-data">
+                <table
+                  class="table"
+                  style="
+                    border-spacing: 0;
+                    width: 100%;
+                    padding: 0px 45px;
+                    padding-top: 20px;
+                    text-align: left;
+                    vertical-align: top;
+                  "
+                >
+                  <tr style="text-align: left; vertical-align: top">
+                    <td
+                      colspan="5"
+                      style="
+                        text-align: left;
+                        vertical-align: top;
+                        border-top: 10px solid transparent;
+                        min-width: 115px;
+                      "
+                    >
+                      <h4
+                        style="
+                          margin: 0px;
+                          padding: 0px;
+                          font-style: normal;
+                          font-weight: normal;
+                          font-size: 18px;
+                          line-height: 25px;
+                        "
+                      >
+                        Customer
+                      </h4>
+                    </td>
+                  </tr>
+                  <tr style="text-align: left; vertical-align: top">
+                    <td
+                      style="
+                        text-align: left;
+                        vertical-align: top;
+                        border-top: 10px solid transparent;
+                        min-width: 115px;
+                      "
+                    >
+                      <p
+                        style="
+                          margin: 0px;
+                          padding: 0px;
+                          text-align: left;
+                          font-style: normal;
+                          font-weight: 300;
+                          font-size: 12px;
+                          line-height: 14px;
+                        "
+                      >
+                        Name
+                      </p>
+                      <h5
+                        style="
+                          margin: 0px;
+                          padding: 0px;
+                          font-style: normal;
+                          font-weight: normal;
+                          font-size: 16px;
+                          line-height: 16px;
+                        "
+                      >
+                        @Model.CustomerName
+                      </h5>
+                    </td>
+                    <td
+                      style="
+                        text-align: left;
+                        vertical-align: top;
+                        border-top: 10px solid transparent;
+                        padding: 0px 5px;
+                        min-width: 115px;
+                      "
+                    >
+                      <p
+                        style="
+                          margin: 0px;
+                          padding: 0px;
+                          text-align: left;
+                          font-style: normal;
+                          font-weight: 300;
+                          font-size: 12px;
+                          line-height: 14px;
+                        "
+                      >
+                        E-mail
+                      </p>
+                      <h5
+                        style="
+                          margin: 0px;
+                          padding: 0px;
+                          font-style: normal;
+                          font-weight: normal;
+                          font-size: 16px;
+                          line-height: 16px;
+                        "
+                      >
+                        @Model.CustomerEmail
+                      </h5>
+                    </td>
+                    <td
+                      style="
+                        text-align: left;
+                        vertical-align: top;
+                        border-top: 10px solid transparent;
+                        padding: 0px 5px;
+                        min-width: 115px;
+                      "
+                    >
+                      <p
+                        style="
+                          margin: 0px;
+                          padding: 0px;
+                          text-align: left;
+                          font-style: normal;
+                          font-weight: 300;
+                          font-size: 12px;
+                          line-height: 14px;
+                        "
+                      >
+                        Phone
+                      </p>
+                      <h5
+                        style="
+                          margin: 0px;
+                          padding: 0px;
+                          font-style: normal;
+                          font-weight: normal;
+                          font-size: 16px;
+                          line-height: 16px;
+                        "
+                      >
+                        @Model.CustomerPhone
+                      </h5>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div
+                class="custom-text"
+                style="
+                  margin-top: 1px;
+                  text-align: left;
+                  margin: 30px 45px;
+                  padding: 12px 16px;
+                  min-height: 80px;
+                  background-color: #f5f5f5;
+                  border: 1px solid #d8d8d8;
+                  box-sizing: border-box;
+                  border-radius: 6px;
+                "
+              >
+                @Model.ConfigCustomMessage
+              </div>
+            </div>
+            <div class="mail-footer" style="background-color: transparent">
+              <div
+                class="separetor"
+                style="border-bottom: 1px solid #d8d8d8; margin: 0px 45px"
+              ></div>
+              <p
+                style="
+                  margin: 0px;
+                  padding: 0px;
+                  text-align: left;
+                  display: block;
+                  padding: 0px 45px;
+                  margin: 30px 0px 10px 0px;
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 16px;
+                  line-height: 12px;
+                "
+              >
+                Best regards. <br /><br />
+                Customer Service Center.
+              </p>
+              <p
+                style="
+                  margin: 0px;
+                  padding: 0px;
+                  text-align: left;
+                  display: block;
+                  padding: 0px 45px;
+                  margin: 30px 0px 10px 0px;
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 14px;
+                  line-height: 12px;
+                "
+              >
+                Website: @Model.CompanySite <br /><br />
+                E-mail: @Model.CompanyEmail <br /><br />
+                Phone: @Model.CompanyPhone
+              </p>
+              <div
+                class="link-button"
+                style="
+                  text-align: center;
+                  background-color: #d31245;
+                  padding: 18px 109px 21px 109px;
+                "
+              >
+                <a
+                  id="button"
+                  href="@Model.ConfigLinkButton"
+                  style="
+                    margin: 0px;
+                    padding: 0px;
+                    display: inline-block;
+                    text-align: center;
+                    border-radius: 39px;
+                    padding: 23px 30px;
+                    font-size: 24px;
+                    line-height: 33px;
+                    font-style: normal;
+                    color: #656d75;
+                    background-color: #ffffff;
+                    text-decoration: none;
+                  "
+                >
+                  Click to subscribe!
+                </a>
+              </div>
+              <h3
+                style="
+                  margin: 0px;
+                  padding: 0px;
+                  background-color: #d31245;
+                  color: #ffffff;
+                  padding: 15px 32px;
+                  text-align: center;
+                  font-style: normal;
+                  font-weight: 500;
+                  font-size: 16px;
+                  line-height: 19px;
+                "
+              >
+                @Model.CompanyName thanks!
+              </h3>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
